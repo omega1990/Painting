@@ -1,15 +1,14 @@
 #pragma once
 #include <memory>
 
-class PhotoReader
+#include "SingletonBase.h"
+
+class PhotoReader : public SingletonBase<PhotoReader>
 {
 public:
 	PhotoReader();
 	~PhotoReader();
-
-	static std::shared_ptr<PhotoReader> GetInstance();
-
-private: 
-	static std::shared_ptr<PhotoReader> myPhotoReader;
 };
+
+
 
