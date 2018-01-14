@@ -8,6 +8,8 @@ class PhotoReader : public SingletonBase<PhotoReader>
 public:
 	PhotoReader();
 	~PhotoReader();
+	std::shared_ptr<PhotoObject> ReadBMP(char * filename);
+
 };
 
 

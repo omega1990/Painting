@@ -15,22 +15,39 @@ public:
 	Painter();
 	~Painter();
 
-	void ShowConsoleCursor(bool showFlag);
+	void					ShowConsoleCursor(
+								bool showFlag);
 
-	int GetRandomNumber(uint aStart, uint aEnd);
+	int						GetRandomNumber(
+								uint aStart, 
+								uint aEnd);
 
-	COLORREF GenerateRandomColor();
+	void					PaintRandomly(
+								std::vector<std::thread>&	aOutThreads);
 
-	std::pair<uint, uint> GenerateRandomPixel(int aX, int aY);
+	void					PaintPhoto(
+								std::vector<std::thread>&	aOutThreads,
+								const PhotoObject&			aPhotoObject);
 
-	void CreateThread(std::vector<std::thread>& aOutThreads);
+	COLORREF				GenerateRandomColor();
 
-	std::shared_ptr<HWND> GetConsole();
-	std::shared_ptr<HDC> GetDc();
+	std::pair<uint, uint>	GenerateRandomPixel(
+								int aX, 
+								int aY);
+
+	std::shared_ptr<HWND>	GetConsole();
+	std::shared_ptr<HDC>	GetDc();
+
+	void					ConfigureCanvasSize(
+								const unsigned int aWidth, 
+								const unsigned int aHeight);
 
 private:
 	const HWND myConsole = GetConsoleWindow();
 	const HDC myDc = GetDC(myConsole);
+
+	unsigned int myCanvasWidth;
+	unsigned int myCanvasHeight;
 
 };
 

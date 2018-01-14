@@ -1,5 +1,5 @@
 #pragma once
-#include <memory>
+#include "Common.h"
 
 template <class T>
 class SingletonBase

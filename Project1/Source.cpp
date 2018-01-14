@@ -12,17 +12,24 @@ int main()
 
 	std::shared_ptr<PhotoReader> reader = PhotoReader::GetInstance();
 	std::shared_ptr<Painter> painter = Painter::GetInstance();
-
 	painter->ShowConsoleCursor(false);
 
 	std::vector<std::thread> threads = std::vector<std::thread>();
 
-	painter->CreateThread(threads);
+	std::shared_ptr<PhotoObject> pixels = reader->ReadBMP("C:\\Users\\Darko i Jelena\\Desktop\\lena.bmp");
+
+	painter->ConfigureCanvasSize(pixels->width, pixels->height);
+	painter->PaintPhoto(threads, *pixels);
+
 
 	for (auto& thrd : threads)
 	{
 		thrd.join();
 	}
+
+
+
+	
 
 	ReleaseDC(*painter->GetConsole(), *painter->GetDc());
 	std::cin.ignore();
